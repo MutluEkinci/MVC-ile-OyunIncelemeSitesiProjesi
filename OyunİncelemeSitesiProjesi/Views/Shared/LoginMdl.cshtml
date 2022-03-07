@@ -1,0 +1,80 @@
+﻿@model OyunİncelemeSitesiProjesi.Models.ViewModel.Oyun_VM
+
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color: #1f2739;border-radius:50px">
+            <div class="modal-body">
+                <div class="login-wrap">
+                    <div class="login-html" style="border-radius:50px">
+                        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Giriş Yap</label>
+                        <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Kaydol</label>
+                        <div class="login-form">
+                            <div class="sign-in-htm">
+                                @using (Html.BeginForm("Giris", "Oyun", FormMethod.Post))
+                                {
+                                    <div class="group">
+                                        <label for="user" class="label">Kullanıcı Adı</label>
+                                        @Html.TextBoxFor(x => x.UyeEntity.Rumuz, new { @class = "input" })
+                                        @*<input id="user" type="text" class="input">*@
+                                    </div>
+                                    <div class="group">
+                                        <label for="pass" class="label">Şifre</label>
+                                        @Html.PasswordFor(x => x.UyeEntity.Sifre, new { @class = "input" })
+                                        @*<input id="pass" type="password" class="input" data-type="password">*@
+                                    </div>
+                                    @*<div class="group">
+                                            <input id="check" type="checkbox" class="check" checked>
+                                            <label for="check"><span class="icon"></span> Oturumu Açık Tut</label>
+                                        </div>*@
+
+                                    <div class="group">
+                                        <input type="submit" id="giris" class="button" value="Giriş Yap">
+
+                                    </div>
+
+                                    @*<div class="hr"></div>
+                                        <div class="foot-lnk">
+                                            <a href="#forgot">Şifreni Mi Unuttun?</a>
+                                        </div>*@
+                                }
+                            </div>
+                            <div class="sign-up-htm">
+                                @using (@Html.BeginForm("Kaydol", "Oyun", FormMethod.Post))
+                                {
+                                    <div class="group">
+                                        <label for="user" class="label">Ad Soyad</label>
+                                        @Html.TextBoxFor(m => m.UyeEntity.AdSoyad, new { @class = "input", required = true, minlength = "5", maxlength = "50", placeholder = "Ad Soyad Giriniz..." })
+                                    </div>
+                                    <div class="group">
+                                        <label for="pass" class="label">Mail</label>
+                                        @Html.TextBoxFor(m => m.UyeEntity.Mail, new { @class = "input", required = true, minlength = "10", maxlengt = "50", placeholder = "Mail Giriniz..." })
+                                    </div>
+                                    <div class="group">
+                                        <label for="user" class="label">Kullanıcı Adı</label>
+                                        @Html.TextBoxFor(m => m.UyeEntity.Rumuz, new { @class = "input", required = true, minlength = "7", maxlength = "20", placeholder = "Kullanıcı Adı Giriniz..." })
+                                    </div>
+                                    <div class="group">
+                                        <label for="pass" class="label">Şifre</label>
+                                        @Html.PasswordFor(m => m.UyeEntity.Sifre, new { @class = "input", required = true, minlength = "8", maxlength = "20", placeholder = "Şifre Giriniz..." })
+                                    </div>
+                                    <div class="group">
+                                        <input type="submit" class="button" value="Kaydol">
+                                    </div>
+                                    <div class="foot-lnk">
+                                        <a><label for="tab-1">Zaten Üye Misin?</label></a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<div class="modal-footer">*@
+        <div style="text-align:center; margin-top:10px;">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Kapat</button>
+        </div>
+    </div>
+</div>
+

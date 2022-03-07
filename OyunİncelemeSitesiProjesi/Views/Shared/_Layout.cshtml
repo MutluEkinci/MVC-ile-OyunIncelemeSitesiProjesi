@@ -1,0 +1,147 @@
+﻿
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oyun Dünyam</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="~/Content/Site.css">
+
+    <style>
+    </style>
+</head>
+<body class="container-fluid text-center">
+    <nav class="navbar navbar-inverse " style="margin-top: 20px; border-radius: 15px; background-color: #232c40;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="~/Oyun/AnaSayfa"><img src="~/Images/logo.png" alt="Alternate Text" style="margin-top:-4px;" /></a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="~/Oyun/AnaSayfa"><span class="glyphicon glyphicon-home"></span></a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Türler
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="~/Oyun/Tur/1">Aksiyon</a></li>
+                            <li><a href="~/Oyun/Tur/2">Macera</a></li>
+                            <li><a href="~/Oyun/Tur/3">Dövüş</a></li>
+                            <li><a href="~/Oyun/Tur/4">Platform</a></li>
+                            <li><a href="~/Oyun/Tur/5">Bulmaca</a></li>
+                            <li><a href="~/Oyun/Tur/6">Simülasyon</a></li>
+                            <li><a href="~/Oyun/Tur/7">Rol Yapma</a></li>
+                            <li><a href="~/Oyun/Tur/8">Spor</a></li>
+                            <li><a href="~/Oyun/Tur/9">Strateji</a></li>
+                            <li><a href="~/Oyun/Tur/12">Gizlilik</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Platformlar
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="~/Oyun/Platform/1">PC</a></li>
+                            <li><a href="~/Oyun/Platform/2">PS3</a></li>
+                            <li><a href="~/Oyun/Platform/3">PS4</a></li>
+                            <li><a href="~/Oyun/Platform/4">PS5</a></li>
+                            <li><a href="~/Oyun/Platform/5">Xbox 360</a></li>
+                            <li><a href="~/Oyun/Platform/6">Xbox One</a></li>
+                            <li><a href="~/Oyun/Platform/7">Xbox X/S</a></li>
+                            <li><a href="~/Oyun/Platform/9">Nintento Switch</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="~/Oyun/Hakkımda">Hakkımızda</a></li>
+                    <li><a href="~/Oyun/İletişim">İletişim</a></li>
+                    <li style="margin-top:9px;margin-left:50px;">
+                        @using (Html.BeginForm("AnaSayfa", "Oyun", FormMethod.Get))
+                        {
+                            @Html.TextBox("Ara", null, new { @style = "color:black", placeholder = "Oyun Adına Göre" })
+                            <input type="submit" name="name" value="Ara" class="btn btn-primary" />
+                        }
+                    </li>
+
+                </ul>
+                @Html.Partial("LoginMdl")
+            <ul class="nav navbar-nav navbar-right">
+                <li style="margin-top:5px; margin-right:20px;">
+                    <h4>
+                        <b>
+                            @Html.ValidationMessage("user", new { @style = "color:#c9c208" })
+                        </b>
+                    </h4>
+                </li>
+                <li style="margin-top: 5px; margin-right: 20px;">
+                    <h4>
+                        <b>
+                            @Html.ValidationMessage("Hata", new { @style = "color:#c9c208" })
+                        </b>
+                    </h4>
+                </li>
+                <li style="margin-top: 5px; margin-right: 20px;">
+                    <h4>
+                        <b>
+                            @Html.ValidationMessage("ZatenVar", new { @style = "color:#c9c208" })
+                        </b>
+                    </h4>
+                </li>
+                @if (User.IsInRole("user") || User.IsInRole("admin"))
+                {
+                    <li style="margin-top:15px">Hoşgeldin @Session["Rumuz"]</li>
+                }
+                @if (User.IsInRole("admin"))
+                {
+                    <li><a href="~/AdminOyunlar/Index"><span class="glyphicon glyphicon-tasks"></span></a></li>
+                }
+                @if (User.IsInRole("user") || User.IsInRole("admin"))
+                {
+                    <li><a href="~/Oyun/Sepet"><span class="glyphicon glyphicon-heart"></span></a></li>
+                }
+                @if (!(User.IsInRole("admin") || User.IsInRole("user")))
+                {
+                    <li><a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span></a></li>
+                }
+                else
+                {
+                    <li><a href="/Oyun/Cikis" onclick="alert('Oturum Kapatıldı')"><span class="glyphicon glyphicon-log-out"></span></a></li>
+                }
+            </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="container-fluid text-center">
+        <div class="row content">
+            @*<div class="col-sm-2 sidenav" style="background-color: #1f2739" >
+
+                </div>*@
+            <!--class="col-sm-8 text-center"-->
+            <div style="margin-top:20px; margin-bottom:20px;  ">
+                @RenderBody()
+            </div>
+            @*<div class="col-sm-2 sidenav" style="background-color: #1f2739">
+
+                </div>*@
+        </div>
+    </div>
+
+    <footer class="container-fluid text-center" style="margin-bottom:20px;border-radius:15px;">
+        <b style="color:midnightblue">İletişim:</b> <a href="https://mail.google.com/mail" target="_blank">oyundunyam@gmail.com</a>
+    </footer>
+
+</body>
+</html>
+

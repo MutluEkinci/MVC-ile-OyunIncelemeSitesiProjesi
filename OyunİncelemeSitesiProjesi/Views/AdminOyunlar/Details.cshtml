@@ -1,0 +1,76 @@
+﻿@model OyunİncelemeSitesiProjesi.Models.ViewModel.Oyun_VM
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div>
+    <h4><b>Oyun</b></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OyunEntity.OyunAd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OyunEntity.OyunAd)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OyunEntity.Turler)
+        </dt>
+        @foreach (var item in Model.OyunTurList)
+        {
+            <dd>
+                @item.Tur.TurAd
+            </dd>
+        }
+        <dt>@Html.DisplayNameFor(model => model.OyunEntity.Platformlar)</dt>
+        @foreach (var item in Model.OyunPlatformList)
+        {
+            <dd>
+                @item.Platform.PlatformAd
+            </dd>
+        }
+        <dt>
+            @Html.DisplayNameFor(model => model.OyunEntity.Resim)
+        </dt>
+
+        <dd>
+            <img src="~/Images/@Model.OyunEntity.Resim" alt="Alternate Text" style="width:256px; height:256px" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OyunEntity.CikisYili)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OyunEntity.CikisYili)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OyunEntity.İnceleme)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OyunEntity.İnceleme)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OyunEntity.Puan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OyunEntity.Puan)
+        </dd>
+
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Güncelle", "Edit", new { id = Model.OyunEntity.OyunID }, new { @class = "btn btn-warning" }) |
+    @Html.ActionLink("Listeye Geri Dön", "Index", null, new { @class = "btn btn-info" })
+</p>
+
+

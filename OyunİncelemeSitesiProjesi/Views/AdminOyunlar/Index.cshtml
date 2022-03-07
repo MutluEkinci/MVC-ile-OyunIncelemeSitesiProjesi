@@ -1,0 +1,90 @@
+﻿@model IEnumerable<OyunİncelemeSitesiProjesi.Models.Oyun>
+@using PagedList
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h1><b>Oyunlar</b></h1>
+<br />
+<table class="container">
+    <tr>
+        <td>
+            @using (Html.BeginForm("Index", "AdminOyunlar", FormMethod.Get))
+            {
+                @Html.TextBox("Ara", null, new { @style = "color:black", placeholder = "Oyun Adına Göre" })
+                <input type="submit" name="name" value="Ara" class="btn btn-primary" />
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Yeni Oyun Ekle", "Create", null, new { @class = "btn btn-primary" })
+        </td>
+
+    </tr>
+</table>
+<br />
+<table class="container" style="width:1000px">
+    <tr>
+        <td>
+            <b>
+                @Html.DisplayNameFor(model => model.OyunID)
+            </b>
+        </td>
+        <td>
+            <b>
+                @Html.DisplayNameFor(model => model.OyunAd)
+            </b>
+        </td>
+        <td>
+            <b>@Html.DisplayNameFor(model => model.Resim)</b>
+        </td>
+        <td>
+            <b>@Html.DisplayNameFor(model => model.CikisYili)</b>
+        </td>
+        <td>
+            <b>@Html.DisplayNameFor(model => model.Puan)</b>
+        </td>
+        <td>
+            <b>Güncelle/Detyalar/Sil</b>
+        </td>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <b> @Html.DisplayFor(modelItem => item.OyunID)</b>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OyunAd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Resim)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CikisYili)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Puan)
+            </td>
+            <td>
+                @Html.ActionLink("Güncelle", "Edit", new { id = item.OyunID }, new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("Detaylar", "Details", new { id = item.OyunID }, new { @class = "btn btn-info" }) |
+                @Html.ActionLink("Sil", "Delete", new { id = item.OyunID }, new { @class = "btn btn-danger", onclick = "return confirm('Gerçekten Silmek İstiyor Musunuz?')" })
+            </td>
+        </tr>
+    }
+</table>
+<div style="text-align:center">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="~/Content/Site.css">
+    @Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+</div>
+
+
+
+
+

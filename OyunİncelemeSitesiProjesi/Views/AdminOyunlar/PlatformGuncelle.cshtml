@@ -1,0 +1,46 @@
+﻿@model OyunİncelemeSitesiProjesi.Models.OyunPlatform
+
+@{
+    ViewBag.Title = "PlatformGuncelle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h1><b>Oyunlar</b></h1>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4><b>Platform Güncelle</b></h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.OyunPlatformID)
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.OyunID)
+                @Html.ValidationMessageFor(model => model.OyunID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PlatformID, "Platform Adı", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("PlatformID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PlatformID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Güncelle" class="btn btn-warning" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Geri Dön", "Edit/" + Model.OyunID + "", null, new { @class = "btn btn-info" })
+</div>

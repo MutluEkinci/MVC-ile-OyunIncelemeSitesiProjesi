@@ -1,0 +1,26 @@
+﻿@model OyunİncelemeSitesiProjesi.Models.Platform
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div>
+    <h4><b>Platform</b></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PlatformAd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlatformAd)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Güncelle", "Edit", new { id = Model.PlatformID }, new { @class = "btn btn-warning" }) |
+    @Html.ActionLink("Listeye Geri Dön", "Index", null, new { @class = "btn btn-info" })
+</p>

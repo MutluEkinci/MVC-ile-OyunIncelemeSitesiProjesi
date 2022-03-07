@@ -1,0 +1,44 @@
+﻿@model OyunİncelemeSitesiProjesi.Models.OyunPlatform
+
+@{
+    ViewBag.Title = "PlatformEkle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h1><b>Oyunlar</b></h1>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <h4><b>Platform Ekle</b></h4>
+    <hr />
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.OyunID)
+                @Html.ValidationMessageFor(model => model.OyunID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PlatformID, "Platform Adı", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.PlatformID, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PlatformID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Yeni Platform Ekle" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Geri Dön", "Edit/" + Model.OyunID + "", null, new { @class = "btn btn-info" })
+</div>
+

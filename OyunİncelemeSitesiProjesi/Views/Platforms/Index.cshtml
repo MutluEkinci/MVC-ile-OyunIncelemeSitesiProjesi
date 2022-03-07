@@ -1,0 +1,65 @@
+﻿@model IEnumerable<OyunİncelemeSitesiProjesi.Models.Platform>
+@using PagedList
+@using PagedList.Mvc
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h1><b>Platformlar</b></h1>
+<br />
+<table class="container">
+    <tr>
+        <td>
+
+            @Html.ActionLink("Yeni Platform Oluştur", "Create", null, new { @class = "btn btn-primary" })
+        </td>
+    </tr>
+</table>
+<br />
+<table class="container" ">
+    <tr>
+        <td>
+            <b>
+                @Html.DisplayNameFor(model => model.PlatformID)
+            </b>
+        </td>
+        <td>
+            <b>
+                @Html.DisplayNameFor(model => model.PlatformAd)
+            </b>
+        </td>
+        <td>
+            <b>
+                Güncelle/Detaylar/Sil
+            </b>
+        </td>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <b>
+                    @Html.DisplayFor(modelItem => item.PlatformID)
+                </b>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlatformAd)
+            </td>
+            <td>
+                @Html.ActionLink("Güncelle", "Edit", new { id = item.PlatformID }, new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("Detaylar", "Details", new { id = item.PlatformID }, new { @class = "btn btn-info" }) |
+                @Html.ActionLink("Sil", "Delete", new { id = item.PlatformID }, new { @class = "btn btn-danger", onclick = "return confirm('Gerçekten Silmek İstiyor Musunuz?')" })
+            </td>
+        </tr>
+    }
+</table>
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" href="~/Content/Site.css">
+

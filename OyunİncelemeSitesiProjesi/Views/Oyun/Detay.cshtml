@@ -1,0 +1,89 @@
+﻿@model OyunİncelemeSitesiProjesi.Models.ViewModel.Oyun_VM
+
+@{
+    ViewBag.Title = "Detay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<table class="container">
+    <tr>
+        <td><img src="~/Images/@Model.OyunEntity.Resim" alt="@Model.OyunEntity.Resim" width="512" height="512" /></td>
+    </tr>
+    <tr>
+        <td><b> @Html.DisplayNameFor(m => m.OyunEntity.OyunAd):</b>@Html.DisplayFor(m => m.OyunEntity.OyunAd)</td>
+    </tr>
+    <tr>
+        <td><b> @Html.DisplayNameFor(m => m.OyunEntity.CikisYili):</b>@(((DateTime)Model.OyunEntity.CikisYili).ToString("dd/MMM/yyyy"))</td>
+    </tr>
+    <tr>
+        <td>
+            <h4><b>@Html.DisplayNameFor(m => m.OyunTurEntity.TurID)</b></h4>
+            @foreach (var item in Model.OyunTurList)
+            {
+                <br />
+                @item.Tur.TurAd
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><b>@Html.DisplayNameFor(m => m.OyunPlatfromEntity.PlatformID)</b></h4>
+            @foreach (var item in Model.OyunPlatformList)
+            {
+                <br />
+                @item.Platform.PlatformAd
+            }
+        </td>
+    </tr>
+    <tr>
+        <td><h4><b>@Html.DisplayNameFor(m => m.OyunEntity.İnceleme)</b></h4><p style="margin-right:10px;">@Model.OyunEntity.İnceleme</p></td>
+    </tr>
+    <tr>
+        <td><b>@Html.DisplayNameFor(m => m.OyunEntity.Puan):</b>@Html.DisplayFor(m => m.OyunEntity.Puan)/5</td>
+    </tr>
+    @if (User.IsInRole("admin") || User.IsInRole("user"))
+    {
+        <tr>
+            <td style="font-size:x-large">
+                @Html.ActionLink(" ", "SepeteEkle", new { id = Model.OyunEntity.OyunID }, new { @class = "glyphicon glyphicon-heart", style = "color:red;" })
+            </td>
+        </tr>
+    }
+</table>
+<br />
+<br />
+
+<table class="container">
+    <tr>
+        <th><h3><b>Yorumlar </b></h3></th>
+    </tr>
+</table>
+<br />
+
+@foreach (var item in Model.YorumList)
+{
+    <table class="container">
+        <tr>
+            <th style="text-align:left;"><h3><b>@item.Uye.Rumuz</b></h3></th>
+        </tr>
+        <tr>
+            <td style="text-align:left;">@item.YorumYazı</td>
+        </tr>
+        <tr>
+            <td style="text-align:right;"><b style="margin-right:10px;">@(((DateTime)item.Tarih).ToString("dd/MMM/yyyy"))</b></td>
+        </tr>
+    </table>
+    <br />
+}
+
+<br />
+@if (User.IsInRole("user") || User.IsInRole("admin"))
+{
+    <table class="container">
+        <tr>
+            <td style="text-align:center"><a href="#" data-toggle="modal" data-target="#yorummodal"><input type="submit" name="name" value="Yorum Yaz" class="btn btn-primary" /></a></td>
+        </tr>
+    </table>
+}
+@Html.Partial("YorumYap")

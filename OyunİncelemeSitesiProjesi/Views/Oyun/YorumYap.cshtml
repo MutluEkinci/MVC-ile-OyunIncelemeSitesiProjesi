@@ -1,0 +1,23 @@
+﻿@model OyunİncelemeSitesiProjesi.Models.ViewModel.Oyun_VM
+
+
+<div id="yorummodal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color: #1f2739;border-radius:50px">
+            <div class="modal-body">
+                <h2><b>YORUM YAP</b></h2>
+                @using (Html.BeginForm("YorumYap", "Oyun", FormMethod.Post))
+                {
+                    @Html.HiddenFor(x => x.OyunEntity.OyunID)
+                    @Html.TextAreaFor(x => x.YorumEntity.YorumYazı, new { @class = "form-control", required = true, minlength = "10", maxlength = "500", placeholder = "Yorumunuzu giriniz..." ,style= " height: 200px; resize: none; "})
+                    @Html.ValidationMessageFor(m => m.YorumEntity.YorumYazı)
+                    <br />
+                    <a href="~/Oyun/Detay/@Model.OyunEntity.OyunID"><input type="submit" name="name" value="Gönder" class="btn btn-success" /></a>
+                }
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:10px;">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Kapat</button>
+        </div>
+    </div>
+</div>

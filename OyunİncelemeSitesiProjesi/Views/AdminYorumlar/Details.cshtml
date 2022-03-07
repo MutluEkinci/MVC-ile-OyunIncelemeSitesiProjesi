@@ -1,0 +1,51 @@
+﻿@model OyunİncelemeSitesiProjesi.Models.Yorum
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div>
+    <h4><b>Yorum</b></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Oyun.OyunAd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Oyun.OyunAd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Uye.AdSoyad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Uye.AdSoyad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YorumYazı)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YorumYazı)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tarih)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tarih)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Güncelle", "Edit", new { id = Model.YorumID }, new {@class="btn btn-warning"}) |
+    @Html.ActionLink("Listeye Geri Dön", "Index", null, new {@class="btn btn-info"})
+</p>

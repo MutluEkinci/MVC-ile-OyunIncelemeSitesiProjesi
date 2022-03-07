@@ -1,0 +1,70 @@
+﻿@model IEnumerable<OyunİncelemeSitesiProjesi.Models.Yorum>
+@using PagedList
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<br />
+<h1><b>Yorum</b></h1>
+<br />
+
+<table class="container">
+    <tr>
+        <td>
+            @using (Html.BeginForm("Index", "AdminYorumlar", FormMethod.Get))
+            {
+                @Html.TextBox("Ara", null, new { @style = "color:black", placeholder = "Oyun Adına Göre" })
+                <input type="submit" name="name" value="Ara" class="btn btn-primary" />
+            }
+        </td>
+    </tr>
+</table>
+<br />
+<table class="container">
+    <tr>
+        <td>
+            <b> @Html.DisplayNameFor(model => model.Oyun.OyunAd)</b>
+        </td>
+        <td>
+            <b> @Html.DisplayNameFor(model => model.Uye.Rumuz)</b>
+        </td>
+        <td>
+            <b>@Html.DisplayNameFor(model => model.YorumYazı)</b>
+        </td>
+        <td>
+            <b>Güncelle/Detaylar/Sil</b>
+        </td>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Oyun.OyunAd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Uye.Rumuz)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.YorumYazı.Substring(0,20))*@
+                @item.YorumYazı.Substring(0, 10)...
+            </td>
+            <td>
+                @Html.ActionLink("Güncelle", "Edit", new { id = item.YorumID }, new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("Detaylar", "Details", new { id = item.YorumID }, new { @class = "btn btn-info" }) |
+                @Html.ActionLink("Sil", "Delete", new { id = item.YorumID }, new { @class = "btn btn-danger", onclick = "return confirm('Gerçekten Silmek İstiyor Musunuz?')" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div style="text-align:center">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="~/Content/Site.css">
+    @Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+</div>

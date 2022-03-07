@@ -1,0 +1,36 @@
+﻿@model OyunİncelemeSitesiProjesi.Models.ViewModel.Oyun_VM
+@using PagedList
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "AnaSayfa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@foreach (var oyun in Model.OyunList)
+{
+    <table class="container">
+        <tr>
+            <td><h3><b>@oyun.OyunAd </b></h3></td>
+        </tr>
+        <tr>
+            <td><img src="~/Images/@oyun.Resim" alt="@oyun.Resim" width="512" height="512" /></td>
+        </tr>
+        <tr>
+            <td><h4><b>Çıkış Yılı</b></h4>@oyun.CikisYili.ToShortDateString()</td>
+        </tr>
+        <tr>
+            <td><h4><b>İnceleme Puanı</b></h4>@oyun.Puan/5</td>
+        </tr>
+        <tr>
+            <td><a href="~/Oyun/Detay/@oyun.OyunID"><input type="submit" name="name" value="Detaya Git" class="btn btn-primary" /></a></td>
+        </tr>
+    </table>
+    <br />
+
+}
+@Html.PagedListPager((IPagedList)Model.OyunList, sayfa => Url.Action("AnaSayfa", new { sayfa }))
+
+
+

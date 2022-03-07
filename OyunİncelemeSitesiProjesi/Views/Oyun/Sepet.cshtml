@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Sepet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model OyunİncelemeSitesiProjesi.Models.ViewModel.Oyun_VM
+
+
+<table class="container">
+    <tr>
+        <td>
+            <h3><b>Favori Oyunlar</b></h3>
+        </td>
+    </tr>
+</table>
+<br />
+<table class="container">
+
+    @foreach (var item in Model.SepetList)
+    {
+        <tr>
+            <td>
+                <img src="~/Images/@item.Oyun.Resim" alt="Alternate Text" width="50" height="50" />
+            </td>
+            <td>
+                <h4>
+                    <a href="~/Oyun/Detay/@item.Oyun.OyunID">@item.Oyun.OyunAd</a>
+                </h4>
+            </td>
+            <td style="font-size:x-large">@Html.ActionLink(" ", "SepettenCikar", new { id = item.SepetID }, new { @class = "glyphicon glyphicon-remove", style = "color:red; margin-right:20px; ", onclick = "return confirm('Gerçekten favorilerinden çıkarmak istiyor musun?')" })</td>
+        </tr>
+
+    }
+</table>
+<br />
+@Html.ActionLink("Anasayfaya Geri Dön", "AnaSayfa", null, new { @class = "btn btn-info" })
+
+
+<link type="text/css" rel="stylesheet" href="~/Content/Site.css">

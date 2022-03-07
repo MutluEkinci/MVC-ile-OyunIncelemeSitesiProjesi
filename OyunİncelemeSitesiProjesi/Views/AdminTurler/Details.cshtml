@@ -1,0 +1,27 @@
+﻿@model OyunİncelemeSitesiProjesi.Models.Tur
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div>
+    <h4><b>Tür</b></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TurAd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TurAd)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Güncelle", "Edit", new { id = Model.TurID }, new { @class = "btn btn-warning" }) |
+    @Html.ActionLink("Listeye Geri Dön", "Index", null, new { @class = "btn btn-info" })
+</p>

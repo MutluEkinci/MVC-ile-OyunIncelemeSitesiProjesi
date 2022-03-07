@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "İletişim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("İletişim", "Oyun", FormMethod.Post))
+{
+    <table class="container">
+        <tr>
+            <td>
+                <h3>
+                    <b>
+                        Bizimle İletişime Geçin
+                    </b>
+                </h3>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.TextBox("Ad", null, new { required = true, minlength = "3", maxlength = "50", placeholder = "Adınızı giriniz...", style = "color:black" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.TextBox("Soyad", null, new { required = true, minlength = "3", maxlength = "50", placeholder = "Soyadınızı Giriniz...", style = "color:black" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.TextBox("Mail", null, new { required = true, minlength = "10", maxlength = "50", placeholder = "Mailinizi Buraya Giriniz...", style = "color:black" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.TextArea("Yazı", null, new { required = true, minlength = "10", maxlength = "500", @style = "width:400px; height:200px; resize:none;color:black;", placeholder = "Yazınızı buraya giriniz..." })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" name="İletişim" value="Gönder" class="btn btn-success" />
+                @Html.ActionLink("Gönder", "İletişim")
+            </td>
+        </tr>
+
+    </table>
+
+}
