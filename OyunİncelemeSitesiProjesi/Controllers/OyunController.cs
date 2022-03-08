@@ -228,28 +228,29 @@ namespace OyunİncelemeSitesiProjesi.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult İletişim(string Yazı)
-        {
-            string to = "mutlu.ekinci@hotmail.com";
-            string from = "mutlu.e@hotmail.com";
-            MailMessage message = new MailMessage(from, to);
+        //[HttpPost]
+        //public ActionResult İletişim(string Yazı)
+        //{
+        //    string to = "mutlu.ekinci@hotmail.com";
+        //    string from = "mutlu.e@hotmail.com";
+        //    MailMessage message = new MailMessage(from, to);
 
-            string mailbody = Yazı;
-            message.Subject = "Oyun Dünyam";
-            message.Body = mailbody;
-            message.BodyEncoding = Encoding.UTF8;
-            message.IsBodyHtml = true;
-            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-            System.Net.NetworkCredential basicCredential1 = new System.Net.NetworkCredential("mutlu.e@hotmail.com", "Magnefix$17%");
-            client.EnableSsl = true;
-            client.UseDefaultCredentials = false;
-            client.Credentials = basicCredential1;
+        //    string mailbody = Yazı;
+        //    message.Subject = "Oyun Dünyam";
+        //    message.Body = mailbody;
+        //    message.BodyEncoding = Encoding.UTF8;
+        //    message.IsBodyHtml = true;
+        //    SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+        //    System.Net.NetworkCredential basicCredential1 = new System.Net.NetworkCredential("Mutlu Ekinci", "*********");
+        //    client.EnableSsl = true;
+        //    client.UseDefaultCredentials = false;
+        //    client.Credentials = basicCredential1;
 
-            client.Send(message);
+        //    client.Send(message);
 
-            return RedirectToAction("AnaSayfa");
-        }
+        //    return RedirectToAction("AnaSayfa");
+        //      not implemented    
+        //}
 
 
     }
