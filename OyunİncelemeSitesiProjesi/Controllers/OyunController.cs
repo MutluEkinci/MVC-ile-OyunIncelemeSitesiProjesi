@@ -33,20 +33,20 @@ namespace OyunİncelemeSitesiProjesi.Controllers
 
         public ActionResult AnaSayfa(string Ara, int sayfa = 1)
         {
-            bool? kontrol = (bool?)TempData["yok"];
-            bool? kontrol1 = (bool?)TempData["user"];
-            bool? kontrol2 = (bool?)TempData["ZatenVar"];
-            if (kontrol == true)
+            bool? yok = (bool?)TempData["yok"];
+            bool? user = (bool?)TempData["user"];
+            bool? zatenVar = (bool?)TempData["ZatenVar"];
+            if (yok == true)
             {
                 ModelState.AddModelError("HATA", "Kullanıcı Adı veya Şifre Yanlış...");
             }
 
-            if (kontrol1 == true)
+            if (user == true)
             {
                 ModelState.AddModelError("user", "Oturum Açıldı");
             }
 
-            if (kontrol2 == true)
+            if (zatenVar == true)
             {
                 ModelState.AddModelError("ZatenVar", "Bu Kullanıcı Adı Zaten Kullanılıyor");
             }
